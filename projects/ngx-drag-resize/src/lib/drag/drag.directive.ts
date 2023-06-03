@@ -265,6 +265,7 @@ export class NgxDragDirective extends BoundaryDirective implements OnInit, OnDes
     this.ngxDragged.emit({
       nativeEvent,
       top: rect.top,
+      offsetTop: rect.offsetTop,
       right: rect.right,
       bottom: rect.bottom,
       left: rect.left,
