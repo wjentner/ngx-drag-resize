@@ -198,7 +198,7 @@ export class NgxResizeDirective extends BoundaryDirective implements AfterViewIn
    * @inheritDoc
    */
   ngOnDestroy(): void {
-    this.destroy$.next();
+    this.destroy$.next(true);
     this.destroy$.complete();
     this.wheelBehaviourChange$.complete();
     this.touchBehaviourChange$.complete();
@@ -271,7 +271,7 @@ export class NgxResizeDirective extends BoundaryDirective implements AfterViewIn
    * Starts the subscription for touch events
    */
   private subscribeForTouchEvents(): void {
-    this.touchBehaviourChange$.next();
+    this.touchBehaviourChange$.next(true);
 
     if (this.isTouchesDisabled || isPlatformServer(this.platformId)) {
       return;
@@ -341,7 +341,7 @@ export class NgxResizeDirective extends BoundaryDirective implements AfterViewIn
    * Make a subscription for wheel events
    */
   private subscribeForWheelEvent(): void {
-    this.wheelBehaviourChange$.next();
+    this.wheelBehaviourChange$.next(true);
 
     if (this.isWheelDisabled || isPlatformServer(this.platformId)) {
       return;
@@ -820,9 +820,11 @@ export class NgxResizeDirective extends BoundaryDirective implements AfterViewIn
    */
   private emitResize(nativeEvent?: Event): void {
     const rect = this.elementRef.nativeElement.getBoundingClientRect();
+    const parentRect = this.elementRef.nativeElement.parentElement?.getBoundingClientRect()
 
     this.ngxResized.emit({
-      nativeEvent,
+      // nativeEvent,
+      parentRect,
       top: rect.top,
       right: rect.right,
       bottom: rect.bottom,

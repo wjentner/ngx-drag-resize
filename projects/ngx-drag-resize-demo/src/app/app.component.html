@@ -120,7 +120,7 @@
          ngxResize
          [ngxResizeMinWidth]="50"
          [ngxResizeMinHeight]="50"
-         ngxResizeBoundary="#drag-resize-area">
+         ngxResizeBoundary="#drag-resize-area" (ngxDragged)="dragged($event)">
       <div [ngxResizeHandle]="handleType.TopLeft" data-resize-handle='TopLeft'></div>
       <div [ngxResizeHandle]="handleType.Top" data-resize-handle='Top'></div>
       <div [ngxResizeHandle]="handleType.TopRight" data-resize-handle='TopRight'></div>

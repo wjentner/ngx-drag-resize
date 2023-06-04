@@ -150,7 +150,16 @@
                   "maximumError": "10kb"
                 }
               ]
-            }
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "defaultConfiguration": "development"
           }
         },
         "serve": {
@@ -161,6 +170,9 @@
           "configurations": {
             "production": {
               "browserTarget": "ngx-drag-resize-demo:build:production"
+            },
+            "development": {
+              "browserTarget": "ngx-drag-resize-demo:build:development"
             }
           }
         },

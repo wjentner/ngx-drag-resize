@@ -13,16 +13,16 @@ import {
 import { Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import { DOCUMENT, isPlatformServer } from '@angular/common';
-import {BoundaryDirective} from '../shared/boundary/boundary.directive';
-import {PositionStrategy} from './position-strategy';
-import {Axis} from '../core/axis';
-import {NgxDrag} from './drag';
-import {DragService} from '../core/drag.service';
-import {WINDOW} from '../core/window.token';
-import {MovementBase} from '../core/movement/movement-base';
-import {Movement} from '../core/movement/movement';
-import {Boundary} from '../shared/boundary/boundary';
-import {PositionBase} from '../core/position-base';
+import { BoundaryDirective } from '../shared/boundary/boundary.directive';
+import { PositionStrategy } from './position-strategy';
+import { Axis } from '../core/axis';
+import { NgxDrag } from './drag';
+import { DragService } from '../core/drag.service';
+import { WINDOW } from '../core/window.token';
+import { MovementBase } from '../core/movement/movement-base';
+import { Movement } from '../core/movement/movement';
+import { Boundary } from '../shared/boundary/boundary';
+import { PositionBase } from '../core/position-base';
 
 /**
  * The directive that allows to drag HTML element on page
@@ -118,7 +118,7 @@ export class NgxDragDirective extends BoundaryDirective implements OnInit, OnDes
    * @inheritDoc
    */
   ngOnDestroy(): void {
-    this.destroy$.next();
+    this.destroy$.next(true);
     this.destroy$.complete();
     this.observableTargetChange$.complete();
   }
@@ -127,7 +127,7 @@ export class NgxDragDirective extends BoundaryDirective implements OnInit, OnDes
    * Observe the element dragging which will be as handle for dragging
    */
   observe(target = this.elementRef.nativeElement): void {
-    this.observableTargetChange$.next();
+    this.observableTargetChange$.next(true);
 
     let hostElementRect = this.elementRef.nativeElement.getBoundingClientRect();
     let eventInitial: PositionBase | null = null;
@@ -261,11 +261,12 @@ export class NgxDragDirective extends BoundaryDirective implements OnInit, OnDes
    */
   private emitDrag(nativeEvent?: Event): void {
     const rect = this.elementRef.nativeElement.getBoundingClientRect();
+    const parentRect = this.elementRef.nativeElement.parentElement?.getBoundingClientRect();
 
     this.ngxDragged.emit({
-      nativeEvent,
+      // nativeEvent,    
+      parentRect,
       top: rect.top,
-      offsetTop: rect.offsetTop,
       right: rect.right,
       bottom: rect.bottom,
       left: rect.left,

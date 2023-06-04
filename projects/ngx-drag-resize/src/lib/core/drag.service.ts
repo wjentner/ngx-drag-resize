@@ -1,11 +1,11 @@
-import {Inject, Injectable} from '@angular/core';
-import {EMPTY, fromEvent, merge, Observable} from 'rxjs';
-import {DOCUMENT} from '@angular/common';
-import {map, switchMap, takeUntil, tap} from 'rxjs/operators';
-import {MovementNative} from './movement/movement-native';
-import {PositionBase} from './position-base';
-import {MovementBase} from './movement/movement-base';
-import {WINDOW} from './window.token';
+import { Inject, Injectable } from '@angular/core';
+import { EMPTY, fromEvent, merge, Observable } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
+import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { MovementNative } from './movement/movement-native';
+import { PositionBase } from './position-base';
+import { MovementBase } from './movement/movement-base';
+import { WINDOW } from './window.token';
 
 /**
  * The service that allows to observe the element dragging
@@ -24,23 +24,23 @@ export class DragService {
   /**
    * Emits on mouse or touch event was ended
    */
-  private readonly leave$ = merge(
-    fromEvent<MovementNative>(this.document, 'mouseup'),
-    fromEvent<MovementNative>(this.document, 'touchend')
-  );
+  // private readonly leave$ = merge(
+  //   fromEvent<MovementNative>(this.document, 'mouseup'),
+  //   fromEvent<MovementNative>(this.document, 'touchend')
+  // );
 
   /**
    * Emits on mouse or touch move
    */
-  private readonly move$ = merge(
-    fromEvent<MovementNative>(this.document, 'mousemove'),
-    fromEvent<MovementNative>(this.document, 'touchmove')
-  );
+  // private readonly move$ = merge(
+  //   fromEvent<MovementNative>(this.window, 'mousemove'),
+  //   fromEvent<MovementNative>(this.window, 'touchmove')
+  // );
 
   constructor(
     @Inject(DOCUMENT) private readonly document: Document,
     @Inject(WINDOW) private readonly window: Window
-  ) {}
+  ) { }
 
   /**
    * Creates an observable that emits drag event
@@ -98,7 +98,11 @@ export class DragService {
    * Implements behaviour to detect drag events
    */
   private forMove(initial: PositionBase): Observable<MovementBase> {
-    return this.move$.pipe(
+
+    return merge(
+      fromEvent<MovementNative>(this.window, 'mousemove'),
+      fromEvent<MovementNative>(this.window, 'touchmove')
+    ).pipe(
       map((event) => {
         const positionBase = this.fromMovementNativeEvent(event);
 
@@ -108,7 +112,23 @@ export class DragService {
           nativeEvent: event,
         };
       }),
-      takeUntil(this.leave$)
+      takeUntil(merge(
+        fromEvent<MovementNative>(this.document, 'mouseup'),
+        fromEvent<MovementNative>(this.document, 'touchend')
+      ))
     );
+
+    // return this.move$.pipe(
+    //   map((event) => {
+    //     const positionBase = this.fromMovementNativeEvent(event);
+
+    //     return {
+    //       ...positionBase,
+    //       initial,
+    //       nativeEvent: event,
+    //     };
+    //   }),
+    //   takeUntil(this.leave$)
+    // );
   }
 }
