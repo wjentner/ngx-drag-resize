@@ -1,47 +1,74 @@
 # ngx-drag-resize
 
-The project contains Angular library [ngx-drag-resize](https://www.npmjs.com/package/ngx-drag-resize) that provides opportunity to use drag and resize functionality on HTML element
+The Angular library provides opportunity to use drag and resize functionality on HTML element.
 
-[![CircleCI](https://img.shields.io/circleci/build/github/dmytro-parfenov/ngx-drag-resize)](https://app.circleci.com/pipelines/github/dmytro-parfenov/ngx-drag-resize?branch=master)
+## Demo
 
-# Getting Started
+[ngx-drag-resize](https://ngx-drag-resize.web.app/)
 
-## Structure
+## Install
 
-Repository contains two projects
+NPM: `npm install ngx-drag-resize --save`
 
- - [ngx-drag-resize](https://github.com/dmytro-parfenov/ngx-drag-resize/tree/master/projects/ngx-drag-resize) - library source code
- - [ngx-drag-resize-demo](https://github.com/dmytro-parfenov/ngx-drag-resize/tree/master/projects/ngx-drag-resize-demo) - used for testing the library and provides demo application 
+Yarn: `yarn add ngx-drag-resize`
 
+## Usage
 
-## Development
+Import `NgxDragResizeModule` to your working module
 
-Run `npm run start:lib` for a build library. The library will automatically rebuild if you change any of the source files from [ngx-drag-resize](https://github.com/dmytro-parfenov/ngx-drag-resize/tree/master/projects/ngx-drag-resize).
+```
+import {NgxDragResizeModule} from 'ngx-drag-resize';
 
-Run `npm run start:demo` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files from [ngx-drag-resize-demo](https://github.com/dmytro-parfenov/ngx-drag-resize/tree/master/projects/ngx-drag-resize-demo).
+@NgModule({
+  imports: [
+    NgxDragResizeModule
+  ]
+})
+export class AppModule { }
+```
 
-It is necessary to run `npm run start:lib` before `npm run start:demo` to ensure that library has already built before the demo application will run.
+Use directives in your template
 
-## Running unit tests
+Simple drag
 
-Run `npm run test:lib` to execute the unit tests via [Karma](https://karma-runner.github.io) for the library.
+```
+<div ngxDrag>drag me</div>
+```
 
-Run `npm run test:demo` to execute the unit tests via [Karma](https://karma-runner.github.io) for the demo application.
+Initiates only by dragging `ngxDragHandle`
 
-## Build
+```
+<div ngxDrag>
+  <span>drag me</span>
+  <span ngxDragHandle>handle</span>
+</div>
+```
 
-Run `npm run build:lib:prod` to make a production build of the library. The build artifacts will be stored in the `dist/ngx-drag-resize` directory.
+A simple resize will work only by using scroll or two fingers on touch devices
 
-Run `npm run build:demo:prod` to make a production build of the demo application. The build artifacts will be stored in the `dist/ngx-drag-resize-demo` directory.
+```
+<div ngxResize>resize me</div>
+```
+
+Resize using borders.
+You have to style all elements as you want.
+
+```
+<div ngxResize>
+  <span>resize me</span>
+  <div [ngxResizeHandle]="NgxResizeHandleType.TopLeft"></div>
+  <div [ngxResizeHandle]="NgxResizeHandleType.Top"></div>
+  <div [ngxResizeHandle]="NgxResizeHandleType.TopRight"></div>
+  <div [ngxResizeHandle]="NgxResizeHandleType.Right"></div>
+  <div [ngxResizeHandle]="NgxResizeHandleType.BottomRight"></div>
+  <div [ngxResizeHandle]="NgxResizeHandleType.Bottom"></div>
+  <div [ngxResizeHandle]="NgxResizeHandleType.BottomLeft"></div>
+  <div [ngxResizeHandle]="NgxResizeHandleType.Left"></div>
+</div>
+```
+
+More examples you can find in [demo app](https://github.com/dmytro-parfenov/ngx-drag-resize/tree/master/projects/ngx-drag-resize-demo)
 
 ## Documentation
 
-Run `npm run docs:lib` to build the documentation for the library. The build artifacts will be stored in the `docs` directory.
-
-## Contributing
-
-[Contributing guideline](https://github.com/dmytro-parfenov/ngx-drag-resize/blob/master/CONTRIBUTING.md)
-
-## Further help
-
-To get more help mail to [dmitryparfenov937@gmail.com](mailto:dmitryparfenov937@gmail.com?subject=[GitHub]%20ngx-drag-resize)
+[Docs site](https://dmytro-parfenov.github.io/ngx-drag-resize/)

@@ -1,0 +1,12 @@
+/*
+ * Public API Surface of ngx-drag-resize
+ */
+export * from './lib/drag-resize.module';
+export * from './lib/drag/drag.directive';
+export * from './lib/drag/drag-handle.directive';
+export * from './lib/resize/resize.directive';
+export * from './lib/resize/resize-handle.directive';
+export * from './lib/resize/resize-handle-type.enum';
+export * from './lib/drag/drag';
+export * from './lib/resize/resize';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb2plY3RzL25neC1kcmFnLXJlc2l6ZS9zcmMvcHVibGljLWFwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7R0FFRztBQUVILGNBQWMsMEJBQTBCLENBQUM7QUFDekMsY0FBYywyQkFBMkIsQ0FBQztBQUMxQyxjQUFjLGtDQUFrQyxDQUFDO0FBQ2pELGNBQWMsK0JBQStCLENBQUM7QUFDOUMsY0FBYyxzQ0FBc0MsQ0FBQztBQUNyRCxjQUFjLHNDQUFzQyxDQUFDO0FBQ3JELGNBQWMsaUJBQWlCLENBQUM7QUFDaEMsY0FBYyxxQkFBcUIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXHJcbiAqIFB1YmxpYyBBUEkgU3VyZmFjZSBvZiBuZ3gtZHJhZy1yZXNpemVcclxuICovXHJcblxyXG5leHBvcnQgKiBmcm9tICcuL2xpYi9kcmFnLXJlc2l6ZS5tb2R1bGUnO1xyXG5leHBvcnQgKiBmcm9tICcuL2xpYi9kcmFnL2RyYWcuZGlyZWN0aXZlJztcclxuZXhwb3J0ICogZnJvbSAnLi9saWIvZHJhZy9kcmFnLWhhbmRsZS5kaXJlY3RpdmUnO1xyXG5leHBvcnQgKiBmcm9tICcuL2xpYi9yZXNpemUvcmVzaXplLmRpcmVjdGl2ZSc7XHJcbmV4cG9ydCAqIGZyb20gJy4vbGliL3Jlc2l6ZS9yZXNpemUtaGFuZGxlLmRpcmVjdGl2ZSc7XHJcbmV4cG9ydCAqIGZyb20gJy4vbGliL3Jlc2l6ZS9yZXNpemUtaGFuZGxlLXR5cGUuZW51bSc7XHJcbmV4cG9ydCAqIGZyb20gJy4vbGliL2RyYWcvZHJhZyc7XHJcbmV4cG9ydCAqIGZyb20gJy4vbGliL3Jlc2l6ZS9yZXNpemUnO1xyXG4iXX0=
